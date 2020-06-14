@@ -31,14 +31,17 @@ public class UserService implements UserDetailsService {
 
     @Override
     public UserDetails loadUserByUsername(String username) throws UsernameNotFoundException {
+        System.out.println(222);
         User user = userRepository.findByUsername(username);
         if (user == null) {
             throw new UsernameNotFoundException("User not found");
         }
+        System.out.println(123);
         return user;
     }
 
     public User findUserById(Long userId) {
+        System.out.println(321);
         Optional<User> userFromDb = userRepository.findUserById(userId);
         return userFromDb.orElse(new User());
     }
@@ -67,6 +70,7 @@ public class UserService implements UserDetailsService {
     }
 
     public List<User> usergtList(Long idMin) {
-        return em.createQuery("select u from User u where u.id > :paramId", User.class).setParameter("paramId", idMin).getResultList();
+        System.out.println(1111);
+        return em.createQuery("select * from t_user where u.id > :paramId", User.class).setParameter("paramId", idMin).getResultList();
     }
 }
