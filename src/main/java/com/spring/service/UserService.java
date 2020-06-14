@@ -33,6 +33,7 @@ public class UserService implements UserDetailsService {
     public UserDetails loadUserByUsername(String username) throws UsernameNotFoundException {
         System.out.println(222);
         User user = userRepository.findByUsername(username);
+        System.out.println("22" + user);
         if (user == null) {
             throw new UsernameNotFoundException("User not found");
         }
